@@ -1,17 +1,17 @@
-# Constructor, operator "new"
+# Constructor, operatorul „new”
 
-The regular `{...}` syntax allows us to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
+Sintaxa `{...}` ne permite să creăm un nou obiect. Dar de multe ori trebuie să creăm mai multe obiect asemănătoare, cum ar fi mai mulți utilizatori sau mai mulți itemi pentru meniuri etc.  
 
-That can be done using constructor functions and the `"new"` operator.
+Acest proces poate fi obținut prin utilizarea funcțiilor de tip constructor și a operatorului `"new"`.
 
-## Constructor function
+## Funcția de tip constructor
 
-Constructor functions technically are regular functions. There are two conventions though:
+Funcțiile de tip constructor sunt de fapt funcții obișnuite. Însă, exista două convenții:
 
-1. They are named with capital letter first.
-2. They should be executed only with `"new"` operator.
+1. Acestea sint numite cu literă mare.
+2. Aceste trebuie să fie executate împreună cu operatorul `"new"`.
 
-For instance:
+De exemplu:
 
 ```js run
 function User(name) {
@@ -27,31 +27,31 @@ alert(user.name); // Jack
 alert(user.isAdmin); // false
 ```
 
-When a function is executed with `new`, it does the following steps:
+Când o funcție este executată cu operatorul `new`, aceasta urmează următorii pași: 
 
-1. A new empty object is created and assigned to `this`.
-2. The function body executes. Usually it modifies `this`, adds new properties to it.
-3. The value of `this` is returned.
+1. Un nou obiect este creat și este atribuit lui `this`.
+2. În momentul executării funcției, `this` este modificat, adică îi sunt atribuite noi proprietăți. 
+3. În final este returnată valoarea lui `this`.
 
-In other words, `new User(...)` does something like:
+Prin alte cuvinte, ceea ce face `new User(...)` este:
 
 ```js
 function User(name) {
 *!*
-  // this = {};  (implicitly)
+  // this = {};  (implicit)
 */!*
 
-  // add properties to this
+  // this primește noi proprietăți
   this.name = name;
   this.isAdmin = false;
 
 *!*
-  // return this;  (implicitly)
+  // return this;  (implicit)
 */!*
 }
 ```
 
-So `let user = new User("Jack")` gives the same result as:
+Deci `let user = new User("Jack")` are același rezultat precum:
 
 ```js
 let user = {
@@ -60,11 +60,12 @@ let user = {
 };
 ```
 
-Now if we want to create other users, we can call `new User("Ann")`, `new User("Alice")` and so on. Much shorter than using literals every time, and also easy to read.
+Dacă dorim să creăm alți utilizatori, putem executa funcția `new User("Ann")`, `new User("Alice")` și tot așa. Este mult mai rapid decât să folosești literals de fiecare dată, și de asemenea mult mai ușor de citit.
 
-That's the main purpose of constructors -- to implement reusable object creation code.
+Acesta este este principalul scop al constructorilor, să implementeze cod reutilizabil pentru crearea de noi obiecte.
 
-Let's note once again -- technically, any function (except arrow functions, as they don't have `this`) can be used as a constructor. It can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
+<!-- Let's note once again -- technically, any function (except arrow functions, as they don't have `this`) can be used as a constructor. It can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`. -->
+Haideți să obesrvăm încă odată -- din punct de vedere tehnic, orice funcție (cu excepția funcțiilor de tip arrow, deoarece acestea nu au dețin `this`) pot fi folosite drept constructori. Poate fi folosită 
 
 ````smart header="new function() { ... }"
 If we have many lines of code all about creation of a single complex object, we can wrap them in an immediately called constructor function, like this:
