@@ -1,19 +1,20 @@
 # Operatori logici
 
-În JavaScript există patru operatori logici: `||` (OR), `&&` (ȘI), `!` (NU), `??` (Nullish Coalescing). În acest articol vorbim doar despre primi trei, operatorul `??` va fi acoperit în următorul articol.
+În JavaScript există patru operatori logici: `||` (OR), `&&` (AND), `!` (NOT), `??` (Nullish Coalescing). Aici vorbim doar despre primii trei, operatorul `??` va fi acoperit în următorul articol.
 
-Chiar dacă sunt denumiți operatori „logici”, aceștia pot fi folosiți pentru valori de orice tip, nu doar pentru cele de tip boolean. Rezultatul acestora putând fi de orice tip. 
+Chiar dacă sunt denumiți "logici", aceștia pot fi folosiți pentru valori de orice tip, nu doar pentru cele de tip boolean. Rezultatul acestora putând fi de orice tip. 
 
 Haideți să aflăm mai multe detalii.
 
 ## || (OR)
 
-Simbolul pentru operatorul „OR” este reprezentat prin două linii verticale.
+Simbolul pentru operatorul "OR" este reprezentat prin două linii verticale.
 
 ```js
 result = a || b;
 ```
-În programarea clasică, operatorul logic „OR” este folosit pentru a manipula doar valori de tip boolean. Dacă valoarea unuia dintre argumentele acestuia este `true`, rezultatul operației va fi `true`, în caz contrar rezultatul va fi `false`.
+
+În programarea clasică, operatorul logic "OR" este folosit pentru a manipula doar valori de tip boolean. Dacă valoarea unuia dintre argumentele acestuia este `true`, rezultatul operației va fi `true`, în caz contrar rezultatul va fi `false`.
 
 În JavaScript, acest operator este puțin mai complex, dar și mult mai eficient. Pentru început, haideți să vedem ce se întâmplă cu aceste valori de tip boolean. 
 
@@ -30,15 +31,15 @@ După cum putem vedea, rezultat este mereu `true` cu excepția cazului în care 
 
 Dacă un operant nu este de tip boolean, acesta este convertit automat pentru a putea fi evaluat.
 
-De exemplu, numărul `1` este `true`, iar numărul `0` este `false`:
+De exemplu, numărul `1` este tratat ca `true`, iar numărul `0` ca `false`:
 
 ```js run
-if (1 || 0) { // funcționează asemenea if( true || false )
-  alert( 'truthy' );
+if (1 || 0) { // funcționează exact ca if( true || false )
+  alert( 'truthy!' );
 }
 ```
 
-De cele mai multe ori, semnul OR `||` este folosit într-un `if` statement pentru a testa dacă vreauna dintre condiții este `true`.
+De cele mai multe ori, OR `||` este folosit într-un `if` statement pentru a testa dacă *vreuna* dintre condițiile date este `true`.
 
 Spre exemplu:
 
@@ -59,13 +60,13 @@ let hour = 12;
 let isWeekend = true;
 
 if (hour < 10 || hour > 18 || isWeekend) {
-  alert( 'Biroul este închis.' ); // este weekend.
+  alert( 'Biroul este închis.' ); // este weekend
 }
 ```
 
 ## OR "||" identifică prima valoare truthy [#or-finds-the-first-truthy-value]
 
-Logica descrisă mai sus este oarecum una de bază. Haideți să discutăm despre calitățile „extra” din JavaScript.  
+Logica descrisă mai sus este oarecum clasică. Haideți să discutăm despre caracteristicile "extra" din JavaScript.
 
 Algoritmul extins funcționează după cum urmează.
 
@@ -75,11 +76,11 @@ Sunt date mai multe valori ale lui OR.
 result = value1 || value2 || value3;
 ```
 
-Operatorul OR `||` face următoarele lucruri:
+Operatorul OR `||` face următoarele:
 
-- Evaluzează operanții de la stânga spre dreapta.
-- Fiecare operant este convertit într-o valoare boolean. Dacă rezultatul este `true`, execuția este oprită și valoarea originală a acelui operant este returnată.
-- Dacă toți operanții au fost evaluați (iar toți erau `false`), ultimul operant este returnat.
+- Evaluzează operanzii de la stânga spre dreapta.
+- Fiecare operand este convertit într-o valoare boolean. Dacă rezultatul este `true`, execuția este oprită și valoarea originală a acelui operand este returnată.
+- Dacă toți operanzii au fost evaluați (iar toți erau `false`), ultimul operant este returnat.
 
 O valoare este returnată în forma ei originală, fără conversiune.
 
@@ -96,7 +97,7 @@ alert( null || 0 || 1 ); // 1 (prima valoare truthy)
 alert( undefined || null || 0 ); // 0 (toate valorile sunt falsy, ultima valoare este returnată)
 ```
 
-Asta conduce la utilizări mai interesante față de cele clasice în care operatorul OR compară doar valori boolean.
+Asta conduce la utilizări mai interesante față de cele pur clasice în care operatorul OR compară doar valori boolean.
 
 1. **Obținerea primei valori truthy dintr-o listă de variabile sau expresii.**
 
@@ -134,7 +135,8 @@ Asta conduce la utilizări mai interesante față de cele clasice în care opera
     În prima linie, operatorul OR `||` imediat ce întâlnește valoarea `true` oprește evaluarea, astfel încât metoda `alert` nu este executată. 
 
     Uneori, oamenii folosesc această funcție pentru a executa comenzi doar dacă condiția din partea stângă este falsy.
-## && (ȘI)
+
+## && (AND)
 
 Operatorul ȘI este reprezentat de două semne ampersand `&&`:
 
@@ -170,7 +172,8 @@ if (1 && 0) { // evaluat ca true && false
 }
 ```
 
-## ȘI "&&" identifică prima valoare falsy
+
+## AND "&&" identifică prima valoare falsy
 
 Sunt date mai multe valori conectate prin operatorul logic ȘI:
 
@@ -178,7 +181,7 @@ Sunt date mai multe valori conectate prin operatorul logic ȘI:
 result = value1 && value2 && value3;
 ```
 
-Operatorul ȘI `&&` face următoarele lucruri:
+Operatorul AND `&&` face următoarele lucruri:
 
 - Evaluează operanții de la stânga la dreapta.
 - Convertește fiecare operant într-un boolean. Dacă rezultatul este `false`, procesul este oprit, iar valoarea originală a operantului este returnată.
@@ -214,14 +217,14 @@ Dacă toate valorile sunt truthy, ultima dintre ele este returnată:
 alert( 1 && 2 && 3 ); // 3, ultima
 ```
 
-````smart header="Prioritatea lui ȘI `&&` este mai mare decât cea a lui ORI `||`"
-Prioritatea operatorului ȘI `&&` este mai mare față de ce a lui ORI `||`.
+````smart header="Prioritatea lui AND `&&` este mai mare decât cea a lui ORI `||`"
+Prioritatea operatorului AND `&&` este mai mare față de ce a lui ORI `||`.
 
 Astfel, codul `a && b || c && d` este în esență exact la fel cu folosirea operatorului `&&` între paranteze: `(a && b) || (c && d)`.
 ````
 
 ````warn header="Nu înlocuiți `if` cu `||` sau `&&`"
-Uneori, oamenii folosesc operatorul ȘI `&&` pentru a scrie o formă mai scurtă de `if` statement.
+Uneori, oamenii folosesc operatorul AND `&&` pentru a scrie o formă mai scurtă de `if` statement.
 
 De exemplu:
 
@@ -231,7 +234,7 @@ let x = 1;
 (x > 0) && alert( 'Mai mare decât zero!' );
 ```
 
-Metoda alert din partea dreaptă a lui `&&` ajugne să fie executată doar dacă evaluarea ajunge până la ea. Adică, doar dacă if `(x > 0)` este true.
+Acțiunea din partea dreaptă a lui `&&` ajunge să fie executată doar dacă evaluarea ajunge până la ea. Adică, doar dacă if `(x > 0)` este true.
 
 Astfel echivalentul este:
 
@@ -245,9 +248,9 @@ Deși, varianta cu `&&` pare a fi mai scurtă, varianta cu `if` statement este m
 ````
 
 
-## ! (NU)
+## ! (NOT)
 
-Operatorul boolean NU este reprezentat printrun semn de exclamare.
+Operatorul boolean NOT este reprezentat printrun semn de exclamare.
 
 Sintaxa este destul de simplă:
 
@@ -267,7 +270,7 @@ alert( !true ); // false
 alert( !0 ); // true
 ```
 
-Dublu NU `!!` poate fi folosit uneori pentru a converti o valoare într-un boolean.
+Dublu NOT `!!` poate fi folosit uneori pentru a converti o valoare într-un boolean.
 
 ```js run
 alert( !!"non-empty string" ); // true
@@ -283,4 +286,4 @@ alert( Boolean("non-empty string") ); // true
 alert( Boolean(null) ); // false
 ```
 
-Prioritatea lui NU `!` este cea mai mare dintre toți operatorii logici, fiind executat mereu primul, înaintea lui `&&` sau `||`.
+Prioritatea lui NOT `!` este cea mai mare dintre toți operatorii logici, fiind executat mereu primul, înaintea lui `&&` sau `||`.
